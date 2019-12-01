@@ -1,0 +1,27 @@
+
+{% block content %}
+    <h2>微波辐射计lv2数据</h2>
+    {% for da in das %}
+        站台号：{{ da.station_id }}<br>
+        观测时间：{{ da.datetime }}<br>
+        温度值：{{ da.temp }}<br>
+        <br>
+    {% endfor %}
+
+    当前页数：{{ paginate.page }}
+    总页数：{{ paginate.pages }}
+    一共有{{ paginate.total }}条数据
+    <br>
+
+    {% if paginate.has_prev %}
+        <a href="/?page={{ paginate.prev_num }}">上一页</a>
+    {% endif %}
+    页码：
+    {% for i in paginate.iter_pages() %}
+        <a href="/?page={{ i }}">{{ i }}</a>
+    {% endfor %}
+
+    {% if paginate.has_next %}
+        <a href="/?page={{ paginate.next_num }}">下一页</a>
+    {% endif %}
+{% endblock %}
